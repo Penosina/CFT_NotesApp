@@ -21,7 +21,7 @@ class CustomButton: UIButton {
     
     // MARK: - Private Methods
     private func setup() {
-        backgroundColor = .orange
+        backgroundColor = .systemIndigo
         tintColor = .orange
         setTitleColor(.white, for: .normal)
         titleLabel?.font = .systemFont(ofSize: Dimensions.standart)

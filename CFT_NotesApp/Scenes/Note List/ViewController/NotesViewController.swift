@@ -48,6 +48,7 @@ class NotesViewController: BaseViewController {
             make.bottom.equalTo(createButton.snp.top).offset(-Dimensions.standart)
         }
         
+        tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear
         tableView.register(NoteCellView.self, forCellReuseIdentifier: Strings.reuseIdentifier)
         tableView.delegate = self
@@ -127,9 +128,9 @@ extension NotesViewController: UITableViewDelegate & UITableViewDataSource {
 // MARK: - Strings
 private extension Strings {
     static let title = "Заметки"
-    static let createNote = "Create New Note"
+    static let createNote = "Создать новую заметку"
     static let reuseIdentifier = "NoteCellView"
-    static let delete = "Delete"
+    static let delete = "Удалить"
 }
 
 // MARK: - Dimensions

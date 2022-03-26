@@ -7,6 +7,7 @@ final class AppCoordinator: Coordinator {
 
     private let window: UIWindow?
     private let dependencies: Dependencies
+    private let defaults = UserDefaults.standard
     
     // MARK: - Init
     init(window: UIWindow?) {
@@ -24,7 +25,7 @@ final class AppCoordinator: Coordinator {
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         
-        if !UserDefaults.standard.bool(forKey: Strings.firstStart) {
+        if !defaults.bool(forKey: Strings.firstStart) {
             addTestNote()
         }
         
@@ -36,13 +37,18 @@ final class AppCoordinator: Coordinator {
     
     // MARK: - Private Methods
     private func addTestNote() {
-        let note = Note(id: 0, title: "Заголовок", text: "Описание")
+        let note = Note(id: 0,
+                        title: Strings.title,
+                        text: Strings.description,
+                        attachment: nil)
         dependencies.coreDataSevice.addOrUpdateNote(note: note)
-        UserDefaults.standard.set(true, forKey: Strings.firstStart)
+        defaults.set(true, forKey: Strings.firstStart)
     }
 }
 
 // MARK: - Strings
 private extension Strings {
     static let firstStart = "firstStart"
+    static let title = "Заголовок"
+    static let description = "Описание"
 }

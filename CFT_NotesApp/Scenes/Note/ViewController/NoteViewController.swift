@@ -5,7 +5,9 @@ class NoteViewController: BaseViewController {
     // MARK: - Properties
     private let scrollView = UIScrollView()
     private let titleTextView = CustomTextView()
+    private let separatorView = UIView()
     private let descriptionTextView = CustomTextView()
+    private let attachmentImageView = UIImageView()
     private let viewModel: NoteViewModel
     
     // MARK: - Init
@@ -27,18 +29,23 @@ class NoteViewController: BaseViewController {
         super.viewWillDisappear(animated)
         
         viewModel.addOrUpdateNote(title: titleTextView.text,
-                                  description: descriptionTextView.text)
+                                  description: descriptionTextView.text,
+                                  image: attachmentImageView.image)
     }
     
     // MARK: - Private Methods
     private func setup() {
         view.addSubview(scrollView)
         scrollView.addSubview(titleTextView)
+        scrollView.addSubview(separatorView)
         scrollView.addSubview(descriptionTextView)
+        scrollView.addSubview(attachmentImageView)
         
         setupScrollView()
         setupTitleTextView()
+        setupSeparatorView()
         setupDescriptionTextView()
+        setupAttachmentImageView()
     }
     
     private func setupScrollView() {
@@ -46,6 +53,8 @@ class NoteViewController: BaseViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
         }
+        
+        scrollView.showsVerticalScrollIndicator = false
     }
     
     private func setupTitleTextView() {
@@ -55,30 +64,58 @@ class NoteViewController: BaseViewController {
             make.width.equalToSuperview()
         }
         
+        titleTextView.placeholder = Strings.enterTheTitle
         titleTextView.font = .systemFont(ofSize: Dimensions.large)
+        titleTextView.configure()
         titleTextView.isScrollEnabled = false
         titleTextView.delegate = self
-        textViewDidChange(descriptionTextView)
+        textViewDidChange(titleTextView)
+    }
+    
+    private func setupSeparatorView() {
+        separatorView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Dimensions.small)
+            make.top.equalTo(titleTextView.snp.bottom).offset(Dimensions.small)
+            make.height.equalTo(1)
+        }
+        
+        separatorView.backgroundColor = .systemGray
     }
     
     private func setupDescriptionTextView() {
         descriptionTextView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(titleTextView.snp.bottom).offset(Dimensions.standart)
-            make.bottom.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalToSuperview()
+            make.top.equalTo(separatorView.snp.bottom).offset(Dimensions.small)
         }
         
+        descriptionTextView.placeholder = Strings.enterTheText
         descriptionTextView.font = .systemFont(ofSize: Dimensions.medium)
+        descriptionTextView.configure()
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.delegate = self
         textViewDidChange(descriptionTextView)
+    }
+    
+    private func setupAttachmentImageView() {
+        attachmentImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Dimensions.standart)
+            make.top.equalTo(descriptionTextView.snp.bottom).offset(Dimensions.small)
+            make.bottom.equalTo(scrollView.contentLayoutGuide)
+            make.height.lessThanOrEqualTo(Dimensions.attachmentHeight)
+        }
+        
+        attachmentImageView.contentMode = .scaleAspectFit
     }
     
     private func bindToViewModel() {
         viewModel.didUpdateData = { [weak self] in
             self?.titleTextView.text = self?.viewModel.title
             self?.descriptionTextView.text = self?.viewModel.text
+            self?.attachmentImageView.image = self?.viewModel.image
+        }
+        
+        viewModel.didSetImage = { [weak self] image in
+            self?.attachmentImageView.image = image
         }
     }
     
@@ -98,6 +135,20 @@ extension NoteViewController: UITextViewDelegate {
                 constraint.constant = estimatedSize.height
             }
         }
+        
+        guard let textView = textView as? CustomTextView else { return }
+        
+        textView.placeholderIsHidden = !textView.text.isEmpty
     }
 }
 
+// MARK: - Strings
+private extension Strings {
+    static let enterTheTitle = "Введите название"
+    static let enterTheText = "Введите текст"
+}
+
+// MARK: - Dimensions
+private extension Dimensions {
+    static let attachmentHeight = 250.0
+}
