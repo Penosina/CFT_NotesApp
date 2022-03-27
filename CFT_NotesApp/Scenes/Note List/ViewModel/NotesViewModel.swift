@@ -1,7 +1,7 @@
 
 // MARK: - NotesViewModelDelegate
 protocol NotesViewModelDelegate: AnyObject {
-    func showEditingNoteScene(note: Note?, id: Int?)
+    func showEditingNoteScene(note: Note?)
 }
 
 final class NotesViewModel {
@@ -31,11 +31,11 @@ final class NotesViewModel {
     }
     
     func createNewNote() {
-        delegate?.showEditingNoteScene(note: nil, id: countOfNotes)
+        delegate?.showEditingNoteScene(note: nil)
     }
     
     func editNote(index: Int) {
-        delegate?.showEditingNoteScene(note: notes[index], id: nil)
+        delegate?.showEditingNoteScene(note: notes[index])
     }
     
     func getCellViewModel(index: Int) -> NoteCellViewModel {

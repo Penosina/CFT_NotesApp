@@ -7,14 +7,14 @@ final class AppCoordinator: Coordinator {
 
     private let window: UIWindow?
     private let dependencies: Dependencies
-    private let defaults = UserDefaults.standard
     
     // MARK: - Init
     init(window: UIWindow?) {
         self.window = window
         childCoordinators = []
         rootNavigationController = UINavigationController()
-        dependencies = Dependencies(coreDataSevice: CoreDataService())
+        dependencies = Dependencies(coreDataSevice: CoreDataService(),
+                                    defaults: UserDefaultsManager())
         rootNavigationController.navigationBar.tintColor = .systemIndigo
     }
     
@@ -25,7 +25,7 @@ final class AppCoordinator: Coordinator {
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         
-        if !defaults.bool(forKey: Strings.firstStart) {
+        if !dependencies.defaults.isFirstEntry() {
             addTestNote()
         }
         
@@ -42,13 +42,12 @@ final class AppCoordinator: Coordinator {
                         text: Strings.description,
                         attachment: nil)
         dependencies.coreDataSevice.addOrUpdateNote(note: note)
-        defaults.set(true, forKey: Strings.firstStart)
+        dependencies.defaults.setFirstEntry()
     }
 }
 
 // MARK: - Strings
 private extension Strings {
-    static let firstStart = "firstStart"
     static let title = "Заголовок"
     static let description = "Описание"
 }

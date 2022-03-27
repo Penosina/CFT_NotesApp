@@ -36,6 +36,7 @@
 		CED1578227EF655600D51C52 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578127EF655600D51C52 /* ImagePickerCoordinator.swift */; };
 		CED1578427EF78FD00D51C52 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578327EF78FD00D51C52 /* Images.swift */; };
 		CED1578627F01A5E00D51C52 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578527F01A5E00D51C52 /* CustomImageView.swift */; };
+		CEF7786527F0A9710093103C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7786427F0A9710093103C /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		CED1578127EF655600D51C52 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		CED1578327EF78FD00D51C52 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		CED1578527F01A5E00D51C52 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		CEF7786427F0A9710093103C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				CE24D05F27ECE93A009EA264 /* AppCoordinator.swift */,
 				CE24D06127ECE965009EA264 /* Dependencies.swift */,
 				CED1578127EF655600D51C52 /* ImagePickerCoordinator.swift */,
+				CEF7786427F0A9710093103C /* UserDefaultsManager.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				CED1578227EF655600D51C52 /* ImagePickerCoordinator.swift in Sources */,
 				CE24D0A227EDFDDE009EA264 /* CustomTextView.swift in Sources */,
 				CED1578427EF78FD00D51C52 /* Images.swift in Sources */,
+				CEF7786527F0A9710093103C /* UserDefaultsManager.swift in Sources */,
 				CE24D07627ECEDE7009EA264 /* Model.xcdatamodeld in Sources */,
 				CE24D08827ECF401009EA264 /* CustomButton.swift in Sources */,
 				CED1578627F01A5E00D51C52 /* CustomImageView.swift in Sources */,

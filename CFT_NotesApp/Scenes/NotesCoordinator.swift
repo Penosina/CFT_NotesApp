@@ -29,16 +29,27 @@ final class NotesCoordinator: Coordinator {
 
 // MARK: - NotesViewModelDelegate
 extension NotesCoordinator: NotesViewModelDelegate {
-    func showEditingNoteScene(note: Note?, id: Int?) {
-        let noteViewModel = NoteViewModel(dependencies: dependencies, note: note, id: id)
+    func showEditingNoteScene(note: Note?) {
+        
+        let noteViewModel: NoteViewModel
+        if let note = note {
+            noteViewModel = NoteViewModel(dependencies: dependencies, note: note)
+        } else {
+            let note = Note(id: dependencies.defaults.getNewId(),
+                            title: "",
+                            text: "",
+                            attachment: nil)
+            noteViewModel = NoteViewModel(dependencies: dependencies, note: note)
+        }
+        
         noteViewModel.delegate = self
         self.noteViewModel = noteViewModel
         let noteVC = NoteViewController(viewModel: noteViewModel)
         rootNavigationController.pushViewController(noteVC, animated: true)
-        setupNavigationBarButton(sender: self.noteViewModel)
+        setupNavigationBarButton()
     }
     
-    private func setupNavigationBarButton(sender: NoteViewModel?) {
+    private func setupNavigationBarButton() {
         let barButtonItem = UIBarButtonItem()
         barButtonItem.image = UIImage.init(systemName: Images.addPhotoImage)
         barButtonItem.tintColor = .systemIndigo

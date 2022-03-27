@@ -21,16 +21,9 @@ final class NoteViewModel {
     private let note: Note
     
     // MARK: - Init
-    init(dependencies: Dependencies, note: Note? = nil, id: Int? = nil) {
+    init(dependencies: Dependencies, note: Note) {
         self.dependencies = dependencies
-        
-        if let id = id {
-            self.note = Note(id: id, title: "", text: "", attachment: nil)
-        } else if let note = note {
-            self.note = note
-        } else {
-            self.note = Note(id: 0, title: "", text: "", attachment: nil)
-        }
+        self.note = note
         
         title = self.note.title
         text = self.note.text
