@@ -35,6 +35,7 @@
 		CE24D0A227EDFDDE009EA264 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE24D0A127EDFDDE009EA264 /* CustomTextView.swift */; };
 		CED1578227EF655600D51C52 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578127EF655600D51C52 /* ImagePickerCoordinator.swift */; };
 		CED1578427EF78FD00D51C52 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578327EF78FD00D51C52 /* Images.swift */; };
+		CED1578627F01A5E00D51C52 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1578527F01A5E00D51C52 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		CE24D0A127EDFDDE009EA264 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		CED1578127EF655600D51C52 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		CED1578327EF78FD00D51C52 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		CED1578527F01A5E00D51C52 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				CE24D06527ECEA46009EA264 /* BaseViewController.swift */,
 				CE24D08727ECF401009EA264 /* CustomButton.swift */,
 				CE24D0A127EDFDDE009EA264 /* CustomTextView.swift */,
+				CED1578527F01A5E00D51C52 /* CustomImageView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				CED1578427EF78FD00D51C52 /* Images.swift in Sources */,
 				CE24D07627ECEDE7009EA264 /* Model.xcdatamodeld in Sources */,
 				CE24D08827ECF401009EA264 /* CustomButton.swift in Sources */,
+				CED1578627F01A5E00D51C52 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ final class NoteViewModel {
     // MARK: - Properties    
     var didUpdateData: (() -> Void)?
     var didSetImage: ((UIImage) -> Void)?
+    var didDeleteImage: (() -> Void)?
     
     weak var delegate: NoteViewModelDelegate?
     
@@ -61,5 +62,9 @@ final class NoteViewModel {
         delegate?.showImagePicker() { [weak self] image in
             self?.didSetImage?(image)
         }
+    }
+    
+    func deleteImage() {
+        didDeleteImage?()
     }
 }

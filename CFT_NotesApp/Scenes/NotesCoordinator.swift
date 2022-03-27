@@ -43,7 +43,7 @@ extension NotesCoordinator: NotesViewModelDelegate {
         barButtonItem.image = UIImage.init(systemName: Images.addPhotoImage)
         barButtonItem.tintColor = .systemIndigo
         
-        let rightButtonItem = UIBarButtonItem(image: UIImage.init(systemName: Images.addPhotoImage),
+        let rightButtonItem = UIBarButtonItem(image: .init(systemName: Images.addPhotoImage),
                                               style: .plain,
                                               target: self,
                                               action: #selector(showImagePickerAction))

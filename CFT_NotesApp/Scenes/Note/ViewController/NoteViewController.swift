@@ -7,8 +7,13 @@ class NoteViewController: BaseViewController {
     private let titleTextView = CustomTextView()
     private let separatorView = UIView()
     private let descriptionTextView = CustomTextView()
-    private let attachmentImageView = UIImageView()
+    private let attachmentImageView = CustomImageView()
     private let viewModel: NoteViewModel
+    
+    // MARK: - Actions
+    @objc private func deleteImage() {
+        viewModel.deleteImage()
+    }
     
     // MARK: - Init
     init(viewModel: NoteViewModel) {
@@ -103,19 +108,21 @@ class NoteViewController: BaseViewController {
             make.bottom.equalTo(scrollView.contentLayoutGuide)
             make.height.lessThanOrEqualTo(Dimensions.attachmentHeight)
         }
-        
-        attachmentImageView.contentMode = .scaleAspectFit
     }
     
     private func bindToViewModel() {
         viewModel.didUpdateData = { [weak self] in
             self?.titleTextView.text = self?.viewModel.title
             self?.descriptionTextView.text = self?.viewModel.text
-            self?.attachmentImageView.image = self?.viewModel.image
+            self?.attachmentImageView.currentImage = self?.viewModel.image
         }
         
         viewModel.didSetImage = { [weak self] image in
-            self?.attachmentImageView.image = image
+            self?.attachmentImageView.currentImage = image
+        }
+        
+        viewModel.didDeleteImage = { [weak self] in
+            self?.attachmentImageView.currentImage = nil
         }
     }
     
@@ -151,4 +158,9 @@ private extension Strings {
 // MARK: - Dimensions
 private extension Dimensions {
     static let attachmentHeight = 250.0
+}
+
+// MARK: - Images
+private extension Images {
+    static let deleteImage = "clear"
 }

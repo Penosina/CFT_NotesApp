@@ -104,6 +104,10 @@ extension NotesViewController: UITableViewDelegate & UITableViewDataSource {
         viewModel.editNote(index: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        Dimensions.rowHeight
+    }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.row < viewModel.countOfNotes else {
             return UISwipeActionsConfiguration()
@@ -136,4 +140,5 @@ private extension Strings {
 // MARK: - Dimensions
 private extension Dimensions {
     static let cellHeight = 180.0
+    static let rowHeight = 70.0
 }

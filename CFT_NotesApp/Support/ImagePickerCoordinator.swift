@@ -29,6 +29,7 @@ final class ImagePickerCoordinator: NSObject, Coordinator {
         let actionSheet = UIAlertController(title: Strings.choosePhotoActionTitle,
                                             message: nil,
                                             preferredStyle: .actionSheet)
+        actionSheet.view.tintColor = .systemIndigo
         
         let cameraAction = UIAlertAction(title: Strings.camera,
                                          style: .default) { [weak self] action in
